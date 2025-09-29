@@ -35,6 +35,8 @@ public class ObstacleManager : MonoBehaviour
 
     void SpawnObstacle()
     {
+        if (!GameManager.Instance.running)
+            return;
         Instantiate(
             obstacle,
             new Vector3(5, Random.Range(-3, 3), 0),

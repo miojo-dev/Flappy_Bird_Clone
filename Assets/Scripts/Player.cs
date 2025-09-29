@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -10,6 +11,9 @@ public class Player : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        this.gameObject.GetComponent<Rigidbody2D>().mass = 0;
+        this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+        GameManager.Instance.running = false;
         gameOver.SetActive(false);
     }
 
@@ -23,6 +27,9 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            this.gameObject.GetComponent<Rigidbody2D>().mass = 2;
+            this.gameObject.GetComponent<Rigidbody2D>().gravityScale = 2;
+            GameManager.Instance.running = true;
             gameObject.GetComponent<Rigidbody2D>()
                 .linearVelocity = Vector2.up * jump;
         }
